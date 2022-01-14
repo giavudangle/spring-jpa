@@ -13,6 +13,10 @@ public class SelfTaughtApplication {
 
 	}
 
+	public String hello(){
+		return "Hell";
+	}
+
 
 
 }

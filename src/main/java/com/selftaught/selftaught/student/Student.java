@@ -2,16 +2,12 @@ package com.selftaught.selftaught.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
 public class Student {
-    public Student(String name, String email, LocalDate dob, Integer age) {
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
-        this.age = age;
-    }
+
 
     public Long getId() {
         return id;
@@ -46,7 +42,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob,LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
@@ -63,17 +59,53 @@ public class Student {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+
+    @Column(
+            name = "name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String name;
+
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String email;
     private LocalDate dob;
+
+    @Transient
+    @Column(
+            name = "age",
+            nullable = true,
+            columnDefinition = "TEXT"
+    )
     private Integer age;
 
-    public Student(Long id, String name, String email, LocalDate dob, Integer age) {
+
+    public Student(){
+
+    }
+
+    public Student(Long id, String name, String email, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
+
+    public String ToString(){
+        return this.id + "\n" + this.email + " \n" + this.name + "\n" + this.dob + "\n" ;
+    }
+
+
+
+
+
 }
