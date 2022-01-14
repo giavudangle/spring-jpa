@@ -1,0 +1,4 @@
+curl -H "Content-Type: application/json" -X POST -d '{"name":"Dang Le Gia vu","email":"vudang@lazada.elogistic.com","dob":"2000-02-22"}' http://localhost:8080/api/v1/student
+curl -X GET http://localhost:8080/api/v1/student
+curl -X DELETE http://localhost:8080/api/v1/student/2
+curl -X PUT http://localhost:8080/api/v1/student/1?name=VuDang&email=vudang@lazada.com

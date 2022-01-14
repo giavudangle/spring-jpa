@@ -24,7 +24,25 @@ import java.util.List;
 
     @PostMapping
     public void registerNewStudent(@RequestBody Student student){
-        System.out.println(student.getEmail());
         this.studentService.registerNewStudent(student);
     }
+
+    @PutMapping(
+            path = "{studentId}"
+    )
+    public void updateStudent(
+            @PathVariable("studentId") Long studentId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email
+    ){
+        studentService.updateStudent(studentId,name,email);
+    }
+
+    @DeleteMapping(
+            path = "{studentId}"
+    )
+    public void deleteStudentById(@PathVariable("studentId") Long id){
+        this.studentService.removeStudentById(id);
+    }
+
 }
